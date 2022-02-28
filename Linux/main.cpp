@@ -10,7 +10,9 @@ int main(int argc,char** argv)
         printf("received: %s\n",data);
 
         std::string responsePrefix = "received: ";
-        response += " had received";
+        std::string response(data,length);
+        response = responsePrefix + response;
+        
         wzSerialportPlus.send((char*)response.c_str(),response.length());
     });
     if(wzSerialportPlus.open("/dev/ttyS1",9600,1,8,'n'))
